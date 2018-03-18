@@ -58,7 +58,7 @@ submit.onclick = function(){
     var input = document.getElementById('name');
     var name = input.value;
     //Make the request
-    req.open('GET','http://harishsainilajak.imad.hasura-app.io/submitname?name'+name,true);
+    req.open('GET','http://harishsainilajak.imad.hasura-app.io/submitname?name='+name,true);
     req.send(null);
     
 };
