@@ -10,10 +10,10 @@ element.innerHTML=`
 `;
 element.style.margin="auto";
 img = document.getElementById("madi");
-var leftMargin=0;
+var lm=0;
 function moveRight(){
-    leftMargin=leftMargin+5;
-    img.style.leftMargin=leftMargin+"px";
+    lm=lm+5;
+    img.style.marginLeft=lm+"px";
 }
 img.onclick = function(){
     var interval = setInterval(moveRight,50);
