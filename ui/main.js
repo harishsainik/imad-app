@@ -9,3 +9,7 @@ element.innerHTML=`
     </div>
 `;
 element.style.margin="auto";
+img = document.getElementById("madi");
+img.onclick = function(){
+    img.style.marginLeft="200px";
+};
