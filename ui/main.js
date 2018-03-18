@@ -10,6 +10,11 @@ element.innerHTML=`
 `;
 element.style.margin="auto";
 img = document.getElementById("madi");
+leftMargin=0;
+function moveRight(){
+    legtMargin=leftMargin+5;
+    img.style.LeftMargin=leftMargin+"px";
+}
 img.onclick = function(){
-    img.style.marginLeft="200px";
+    var interval = serInterval(moveRight,50);
 };
