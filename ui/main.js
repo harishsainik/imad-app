@@ -26,19 +26,39 @@ button.onclick= function(){
     req.send(null);
 };
 
-var input = document.getElementById('name');
-var name = input.value;
 
 var submit = document.getElementById('submit-btn');
 
 submit.onclick = function(){
-    //Make request to the server and send name
-    //fetch list and render it
-    var names=['name1','name2','name3','name4'];
-    var list='';
-    for(var i=0;i<names.length;i++){
-        list+='<li>' + names[i] +'</li>';
-    }
-    var ui=document.getElementById('namelist');
-    ui.innerHTML = list;
+     //Create the request object
+    var req = new XMLHttpRequest();
+    
+    //define action to be taken on state change of request
+    req.onreadystatechange = function(){
+      if(req.readyState === XMLHttpRequest.DONE)
+      {
+          //if request if done successfully take action
+          if(req.status === 200)
+          {
+            //fetch list and render it
+            var names=req.responseText;
+            names=JSON.parse(names);
+            var list='';
+            for(var i=0;i<names.length;i++){
+                list+='<li>' + names[i] +'</li>';
+            }
+            var ui=document.getElementById('namelist');
+            ui.innerHTML = list; 
+          }
+      }
+      //Request not done yet
+    };
+    
+    //fetch name
+    var input = document.getElementById('name');
+    var name = input.value;
+    //Make the request
+    req.open('GET','http://harishsainilajak.imad.hasura-app.io/submitname?name'+name,true);
+    req.send(null);
+    
 };
