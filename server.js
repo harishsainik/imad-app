@@ -178,7 +178,7 @@ app.get('/submitname/:name',function(req,res){
     var name=req.params.name;
     names.push(name);//add name to list;
     //send list using JSON
-    res.send(JSON.stringigy(names));
+    res.send(JSON.stringify(names));
 });
 
 app.get('/ui/main.js',function(req,res){
