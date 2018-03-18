@@ -25,3 +25,20 @@ button.onclick= function(){
     req.open('GET','http://harishsainilajak.imad.hasura-app.io/counter',true);
     req.send(null);
 };
+
+var input = document.getElementById('name');
+var name = input.value;
+
+var submit = document.getElementById('submit-btn');
+
+submit.onclick = function(){
+    //Make request to the server and send name
+    //fetch list and render it
+    var names=['name1','name2','name3','name4'];
+    var list='';
+    for(var i=0;i<names.length;i++){
+        list+='<li>' + list[i] +'</li>'
+    }
+    var ui=document.getElementById('namelist');
+    ui.innerHTML = ui;
+};
