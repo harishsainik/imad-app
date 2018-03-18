@@ -8,3 +8,4 @@ element.innerHTML=`
         </p>
     </div>
 `;
+element.style.margin="auto";
