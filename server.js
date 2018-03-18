@@ -70,14 +70,14 @@ var articles={
 	title:'Article Three',
 	heading:'Article Three',
 	content:`<p>
-			'Save your hands,” my mother says,
-			seeing me untwist a jar’s tight cap—
+			'Save your hands, 'my mother says,
+			seeing me untwist a jar's tight cap'
 
 			just the way she used to tell me
 			not to let boys fool around, or feel
 
-			my breasts: “keep them fresh
-			for marriage,” as if they were a pair
+			my breasts: Ikeep them fresh
+			for marriage,' as if they were a pair
 
 			of actual fruit. I scoffed
 			to think they could bruise, scuff,
@@ -86,12 +86,12 @@ var articles={
 			at my knuckly thumbs, my index finger
 
 			permanently askew in the same classic
-			crook as hers, called a swan’s neck,
+			crook as hers, called a swan's neck,
 
-			as if snapped, it’s that pronounced.
+			as if snapped, it's that pronounced.
 			Even as I type, wondering how long
 
-			I’ll be able to—each joint in my left hand
+			I'll be able to' each joint in my left hand
 			needing to be hoisted, prodded, into place,
 
 			one knuckle like a clock’s dial clicking
@@ -130,7 +130,7 @@ var articles={
 			she mused, distraught anew and freshly
 			stung by the self-betrayal. So much 
 
-			I still want to do with my hands—
+			I still want to do with my hands'
 			type, play, cook, caress, swipe, re-trace.
 		</p>`
 }
@@ -167,6 +167,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
+var counter=0;
+app.get('/counter',function(req,res){
+   counter=counter+1;
+   res.send(counter.toString());
+});
 app.get('/ui/main.js',function(req,res){
    res.sendFile(path.join(__dirname,'ui','main.js')); 
 });
