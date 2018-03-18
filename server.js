@@ -176,8 +176,9 @@ app.get('/counter',function(req,res){
 var names=[];
 app.get('/submitname/:name',function(req,res){
     var name=req.params.name;
-    
-   res.send(name);
+    names.push(name);//add name to list;
+    //send list using JSON
+    res.send(JSON.stringigy(names));
 });
 
 app.get('/ui/main.js',function(req,res){
