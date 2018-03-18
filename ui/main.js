@@ -10,6 +10,6 @@ element.innerHTML=`
 `;
 element.style.margin="auto";
 img = document.getElementById("madi");
-img.onClick(function(){
+img.onclick(function(){
    img.style.leftMargin="100px"; 
 });
