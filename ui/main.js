@@ -10,7 +10,7 @@ element.innerHTML=`
 `;
 element.style.margin="auto";
 img = document.getElementById("madi");
-leftMargin=0;
+var leftMargin=0;
 function moveRight(){
     legtMargin=leftMargin+5;
     img.style.LeftMargin=leftMargin+"px";
