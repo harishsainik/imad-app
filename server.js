@@ -172,9 +172,22 @@ app.get('/counter',function(req,res){
    counter=counter+1;
    res.send(counter.toString());
 });
+
+var names=[];
+app.get('submit-name/:name',function(req,res){
+   //get name;
+   var name=request.params.name;
+   //push name;
+   names.push(name);
+   //send the list using JSON
+   res.send(JSON.stringigy(names));
+});
+
 app.get('/ui/main.js',function(req,res){
    res.sendFile(path.join(__dirname,'ui','main.js')); 
 });
+
+
 app.get('/:articleName',function(req,res){
   var articleName=req.params.articleName;	
   res.send(createTemplate(articles[articleName]));
