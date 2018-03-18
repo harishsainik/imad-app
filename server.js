@@ -176,7 +176,7 @@ app.get('/counter',function(req,res){
 var names=[];
 app.get('submit-name/:name',function(req,res){
    //get name;
-   var name=request.params.name;
+   var name=req.params.name;
    //push name;
    names.push(name);
    //send the list using JSON
