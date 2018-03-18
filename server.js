@@ -173,9 +173,8 @@ app.get('/counter',function(req,res){
    res.send(counter.toString());
 });
 
-var names=[];
-app.get('submit-name/:name',function(req,res){
-   res.send("made req");
+app.get('/submit',function(req,res){
+   res.send("harish");
 });
 
 app.get('/ui/main.js',function(req,res){
