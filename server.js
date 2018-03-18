@@ -173,8 +173,10 @@ app.get('/counter',function(req,res){
    res.send(counter.toString());
 });
 
-app.get('/submit',function(req,res){
-   res.send("harish");
+app.get('/submit/:name',function(req,res){
+    var name=req.params.name;
+    
+   res.send(name);
 });
 
 app.get('/ui/main.js',function(req,res){
