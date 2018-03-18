@@ -18,8 +18,8 @@ var articles={
 			The listserv is blowing up.
 			Ableist verse, ableist verse
 
-			and I’m talking to you.
-			I’m a green circle for you
+			and I am talking to you.
+			I am a green circle for you
 			and there you go again
 
 			into my cover letters.
@@ -41,26 +41,26 @@ var articles={
 	content:`<p>The first thing I learned was to look wide
 			at the darkness
 
-			and not want anything. He’d say, Just look 
+			and not want anything. Head say, Just look 
 			at the darkness
 
-			and tell me what you see. I’d say, I see stars or
+			and tell me what you see. I'd say, I see stars or
 			Just the stars, Dad.
 
-			And he’d say, Don’t call them that yet. What do you see?
+			And he'd say, Don't call them that yet. What do you see?
 			Just the stars, Dad.
 
-			But then I’d be quiet and let my eyes go and look wide
+			But then I'd be quiet and let my eyes go and look wide
 			at the darkness.
 
 			It was like a dome. I think it frightened me to stare
 			at the darkness.
 
-			I see light. I see a million little lights. And he’d say
-			They aren’t all stars.
+			I see light. I see a million little lights. And he'd say
+			They aren't all stars.
 
-			Some were planets and some were planes and I’d say, Yeah,
-			they aren’t all stars.
+			Some were planets and some were planes and I'd say, Yeah,
+			they aren't all stars.
 
 			But not really believe it. But say it so not to feel stupid out there
 			in the darkness.
@@ -167,6 +167,9 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
+app.get('/ui/main.js',function(req,res){
+   res.sendFile(path.join(__dirname,'ui','main.js')); 
+});
 app.get('/:articleName',function(req,res){
   var articleName=req.params.articleName;	
   res.send(createTemplate(articles[articleName]));
