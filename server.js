@@ -70,7 +70,7 @@ var articles={
 	title:'Article Three',
 	heading:'Article Three',
 	content:`<p>
-			“Save your hands,” my mother says,
+			'Save your hands,” my mother says,
 			seeing me untwist a jar’s tight cap—
 
 			just the way she used to tell me
