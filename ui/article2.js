@@ -29,7 +29,7 @@ submit.onclick = function(){
     var input = document.getElementById('comment');
     var comment = input.value;
     //Make the request
-    req.open('GET','http://localhost/submitcomment2?comment='+comment,true);
+    req.open('GET','http://harishsainilajak.imad.hasura-app.io/submitcomment2?comment='+comment,true);
     req.send(null);
     
 };
