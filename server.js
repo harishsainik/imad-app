@@ -38,6 +38,7 @@ var articles={
                 <br/>
                 <input type="text" id="comment" placeholder="comment">
                 <input type="submit" id="submit-btn" value="Submit">
+                <br/>
                 Previous Comments:
                 <ul id="commentlist">
                     <!--Will be added with javascript dynamically-->
