@@ -33,7 +33,19 @@ var articles={
 			I want to be disability for you
 			and capital crawl for you
 			and accommodate you. 
-		</p>`
+		</p>`,
+	comment:`<div class="container">
+                <br/>
+                <input type="text" id="comment" placeholder="comment">
+                <input type="submit" id="submit-btn" value="Submit">
+                Previous Comments:
+                <ul id="commentlist">
+                    <!--Will be added with javascript dynamically-->
+                </ul>
+            </div>   
+            `,
+
+    script:'ui/article1.js'
 },
 	'article-two':{
 	title:'Article Two',
@@ -64,7 +76,18 @@ var articles={
 
 			But not really believe it. But say it so not to feel stupid out there
 			in the darkness.
-		</p>`
+		</p>`,
+	comment:`<div class="container">
+                <br/>
+                <input type="text" id="comment" placeholder="comment">
+                <input type="submit" id="submit-btn" value="Submit">
+                Previous Comments:
+                <ul id="commentlist">
+                    <!--Will be added with javascript dynamically-->
+                </ul>
+            </div>   
+            `,
+    script:'ui/article2.js'
 },
 	'article-three':{
 	title:'Article Three',
@@ -132,7 +155,19 @@ var articles={
 
 			I still want to do with my hands'
 			type, play, cook, caress, swipe, re-trace.
-		</p>`
+		</p>`,
+	comment:`<div class="container">
+                <br/>
+                <input type="text" id="comment" placeholder="comment">
+                <input type="submit" id="submit-btn" value="Submit">
+                <br/>
+                Previous Comments:
+                <ul id="commentlist">
+                    <!--Will be added with javascript dynamically-->
+                </ul>
+            </div>   
+            `,
+    script:'ui/article3.js'
 }
 }
 
@@ -141,6 +176,8 @@ function createTemplate(data){
 	var title=data.title;
 	var heading=data.heading;
 	var content=data.content;
+	var comment=data.comment;
+	var script=data.script;
 	var htmlTemplate =`
 		<!DOCTYPE html>
 		<html>
@@ -156,6 +193,12 @@ function createTemplate(data){
 			    <h1>${heading}</h1>
 				${content}
 			</div>
+			<div class="footer">
+			${comment}
+			</div>
+
+	        <script type="text/javascript" src=${script}>
+	        </script>
 		</body>
 		</html>
 		`;
@@ -181,10 +224,45 @@ app.get('/submitname',function(req,res){
     res.send(JSON.stringify(names));
 });
 
+var comments1=[];
+app.get('/submitcomment1',function(req,res){
+    var comment=req.query.comment;
+    comments1.push(comment);//add name to list;
+    //send list using JSON
+    res.send(JSON.stringify(comments1));
+});
+
+
+var comments2=[];
+app.get('/submitcomment2',function(req,res){
+    var comment=req.query.comment;
+    comments2.push(comment);//add name to list;
+    //send list using JSON
+    res.send(JSON.stringify(comments2));
+});
+
+
+var comments3=[];
+app.get('/submitcomment3',function(req,res){
+    var comment=req.query.comment;
+    comments3.push(comment);//add name to list;
+    //send list using JSON
+    res.send(JSON.stringify(comments3));
+});
+
 app.get('/ui/main.js',function(req,res){
    res.sendFile(path.join(__dirname,'ui','main.js')); 
 });
 
+app.get('/ui/article1.js',function(req,res){
+   res.sendFile(path.join(__dirname,'ui','article1.js')); 
+});
+app.get('/ui/article2.js',function(req,res){
+   res.sendFile(path.join(__dirname,'ui','article2.js')); 
+});
+app.get('/ui/article3.js',function(req,res){
+   res.sendFile(path.join(__dirname,'ui','article3.js')); 
+});
 
 app.get('/:articleName',function(req,res){
   var articleName=req.params.articleName;	
