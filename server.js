@@ -75,12 +75,12 @@ app.get('/submitname',function(req,res){
 var comments1=[];
 app.get('/submitcomment1',function(req,res){
     var comment=req.query.comment;
-    pool.query("insert into comment1 values ($1)",[comment],function(err,result){
+    pool.query("insert into comment1 values ($1)",[comment],function(err){
         if(err){
             res.status(500).send(err.toString());
         }
     });
-    
+        console.log("coming here");
       pool.query("SELECT * from comment1",function(err,result){
       if(err){
           res.status(500).send(err.toString());
@@ -90,11 +90,14 @@ app.get('/submitcomment1',function(req,res){
               res.status(404).send("item not found");
           }
           else{
-            
-            res.send(JSON.stringigy(result.rows));
+            var articleData=result.rows[0];
+            res.send(JSON.stringify(articleData));
           }
       }
   });
+    comments1.push(comment);//add name to list;
+    //send list using JSON
+    res.send(JSON.stringify(comments1));
 });
 
 
