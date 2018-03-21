@@ -72,9 +72,8 @@ app.get('/submitname',function(req,res){
     res.send(JSON.stringify(names));
 });
 
-var comments1=[];
 app.get('/submitcomment1',function(req,res){
-    var comment=req.query.comment;
+    var comment=req.query.comment;// we can also use 'insert into comment1 ("comment") values ($1)' in the following query
     pool.query("insert into comment1 (\"comment\") values ($1)",[comment],function(err){
         if(err){
             res.status(500).send(err.toString());
@@ -98,21 +97,53 @@ app.get('/submitcomment1',function(req,res){
 });
 
 
-var comments2=[];
 app.get('/submitcomment2',function(req,res){
-    var comment=req.query.comment;
-    comments2.push(comment);//add name to list;
-    //send list using JSON
-    res.send(JSON.stringify(comments2));
+    var comment=req.query.comment;// we can also use 'insert into comment1 ("comment") values ($1)' in the following query
+    pool.query("insert into comment2 (\"comment\") values ($1)",[comment],function(err){
+        if(err){
+            res.status(500).send(err.toString());
+        }
+    });
+        console.log("coming here");
+      pool.query("SELECT * from comment2",function(err,result){
+      if(err){
+          res.status(500).send(err.toString());
+      }
+      else{
+          if(result.rows.length === 0){
+              res.status(404).send("item not found");
+          }
+          else{
+            var articleData=result.rows[0];
+            res.send(JSON.stringify(result.rows));
+          }
+      }
+  });
 });
 
 
-var comments3=[];
 app.get('/submitcomment3',function(req,res){
-    var comment=req.query.comment;
-    comments3.push(comment);//add name to list;
-    //send list using JSON
-    res.send(JSON.stringify(comments3));
+    var comment=req.query.comment;// we can also use 'insert into comment1 ("comment") values ($1)' in the following query
+    pool.query("insert into comment3 (\"comment\") values ($1)",[comment],function(err){
+        if(err){
+            res.status(500).send(err.toString());
+        }
+    });
+        console.log("coming here");
+      pool.query("SELECT * from comment3",function(err,result){
+      if(err){
+          res.status(500).send(err.toString());
+      }
+      else{
+          if(result.rows.length === 0){
+              res.status(404).send("item not found");
+          }
+          else{
+            var articleData=result.rows[0];
+            res.send(JSON.stringify(result.rows));
+          }
+      }
+  });
 });
 
 app.get('/ui/main.js',function(req,res){
