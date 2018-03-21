@@ -3,6 +3,7 @@ var morgan = require('morgan');
 var path = require('path');
 
 var Pool = require('pg').Pool;
+var pool=new Pool(config);
 
 var config = {
   user:'harishsainilajak',
@@ -55,19 +56,7 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-var pool=new Pool(config);
-app.get('/test',function(req,res){
-   //make select query
-   //return response
-   pool.query('SELECT * FROM test',function(err,result){
-       if(err){
-           res.status(500).send(err.toString());
-       }
-       else{
-           res.send(JSON.stringify(result));
-       }
-   })
-});
+
 
 var counter=0;
 app.get('/counter',function(req,res){
