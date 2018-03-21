@@ -95,9 +95,6 @@ app.get('/submitcomment1',function(req,res){
           }
       }
   });
-    comments1.push(comment);//add name to list;
-    //send list using JSON
-    res.send(JSON.stringify(comments1));
 });
 
 
