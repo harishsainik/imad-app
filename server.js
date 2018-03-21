@@ -91,7 +91,7 @@ app.get('/submitcomment1',function(req,res){
           }
           else{
             var articleData=result.rows[0];
-            res.send(JSON.stringify(articleData));
+            res.send(JSON.stringify(result.rows));
           }
       }
   });
