@@ -289,7 +289,7 @@ app.get('/ui/article3.js',function(req,res){
    res.sendFile(path.join(__dirname,'ui','article3.js')); 
 });
 
-app.get('articles/:articleName',function(req,res){
+app.get('/articles/:articleName',function(req,res){
   var articleName=req.params.articleName;
   pool.query("SELECT * from article where title='"+articleName+"'",function(err,result){
       if(err){
