@@ -16,7 +16,7 @@ submit.onclick = function(){
             comments=JSON.parse(comments);
             var list='';
             for(var i=0;i<comments.length;i++){
-                list+='<li>' + comments[i] +'</li>';
+                list+='<li>' + comments[i].comment +'</li>';
             }
             var ui=document.getElementById('commentlist');
             ui.innerHTML = list; 
