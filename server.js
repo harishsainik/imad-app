@@ -75,7 +75,7 @@ app.get('/submitname',function(req,res){
 var comments1=[];
 app.get('/submitcomment1',function(req,res){
     var comment=req.query.comment;
-    pool.query("insert into comment1 values ($1)",[comment],function(err){
+    pool.query("insert into comment1 ('comment') values ($1)",[comment],function(err){
         if(err){
             res.status(500).send(err.toString());
         }
