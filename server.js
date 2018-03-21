@@ -75,9 +75,26 @@ app.get('/submitname',function(req,res){
 var comments1=[];
 app.get('/submitcomment1',function(req,res){
     var comment=req.query.comment;
-    comments1.push(comment);//add name to list;
-    //send list using JSON
-    res.send(JSON.stringify(comments1));
+    pool.query("insert into comment1 values ($1)",[comment],function(err,result){
+        if(err){
+            res.status(500).send(err.toString());
+        }
+    });
+    
+      pool.query("SELECT * from comment1",function(err,result){
+      if(err){
+          res.status(500).send(err.toString());
+      }
+      else{
+          if(result.rows.length === 0){
+              res.status(404).send("item not found");
+          }
+          else{
+            
+            res.send(JSON.stringigy(result.rows));
+          }
+      }
+  });
 });
 
 
