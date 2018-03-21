@@ -3,7 +3,6 @@ var morgan = require('morgan');
 var path = require('path');
 
 var Pool = require('pg').Pool;
-var pool=new Pool(config);
 
 var config = {
   user:'harishsainilajak',
@@ -15,6 +14,7 @@ var config = {
 
 var app = express();
 app.use(morgan('combined'));
+var pool=new Pool(config);
 
 
 
