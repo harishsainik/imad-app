@@ -98,7 +98,17 @@ app.post('/login',function(req,res){
            }
            else
            {
-               res.send("ok");
+               var dbPassword = result.rows[0].password;
+               var salt = dbPassword.split('$')[1];
+               var hashPassword = hash(password,salt);
+               if(hashPassword === dbPassword)
+               {
+                   return res.send("Logged in");
+               }
+               else
+               {
+                   res.status(403).send("Invalid username of password");
+               }
            }
        }
    });
