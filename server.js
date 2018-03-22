@@ -3,7 +3,7 @@ var morgan = require('morgan');
 var path = require('path');
 
 var Pool = require('pg').Pool;
-
+var crypto = require('crypto');
 var config = {
   user:'harishsainilajak',
   database:'harishsainilajak',
@@ -56,7 +56,15 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-
+function hash(input, salt)
+{
+    var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
+    return hashsed.toString('hex');
+}
+app.get('/hash/:input',function(req,res){
+   var hashString = hash(input,'This is salt string');
+   res.send(hashString);
+});
 
 var counter=0;
 app.get('/counter',function(req,res){
@@ -71,6 +79,7 @@ app.get('/submitname',function(req,res){
     //send list using JSON
     res.send(JSON.stringify(names));
 });
+
 
 app.get('/submitcomment1',function(req,res){
     var comment=req.query.comment;// we can also use 'insert into comment1 ("comment") values ($1)' in the following query
