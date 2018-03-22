@@ -5,6 +5,7 @@ var path = require('path');
 var Pool = require('pg').Pool;
 var crypto = require('crypto');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var config = {
   user:'harishsainilajak',
@@ -17,6 +18,12 @@ var config = {
 var app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());
+app.use(session({
+    secret:"mysuperdupersecret",
+    cookie:{
+        maxAge: 1000*60*60*24*30
+    }
+}));
 var pool=new Pool(config);
 
 
@@ -103,6 +110,8 @@ app.post('/login',function(req,res){
                var hashPassword = hash(password,salt);
                if(hashPassword === dbPassword)
                {
+                   //set the session
+                   req.session.auth ={ userId : result.rows[0].id};
                    return res.send("Logged in");
                }
                else
