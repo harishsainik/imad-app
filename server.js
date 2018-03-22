@@ -62,7 +62,7 @@ function hash(input, salt)
     return hashsed.toString('hex');
 }
 app.get('/hash/:input',function(req,res){
-   var hashString = hash(input,'This is salt string');
+   var hashString = hash(req.params.input,'This is salt string');
    res.send(hashString);
 });
 
