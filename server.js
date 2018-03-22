@@ -93,7 +93,13 @@ app.post('/login',function(req,res){
            res.status(500).send(err.toString());
        }
        else{
-           res.send("got some result");
+           if(result.rows.length === 0){
+               res.status(403).send("Invalid username or password");
+           }
+           else
+           {
+               res.send("ok");
+           }
        }
    });
 });
