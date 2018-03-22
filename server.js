@@ -46,7 +46,6 @@ function createTemplate(data){
 			<div class="footer">
 			${comment}
 			</div>
-
 	        <script type="text/javascript" src=${script}>
 	        </script>
 		</body>
@@ -83,12 +82,7 @@ app.post('/create-user',function(req,res){
        else{
            res.send("User successfully created: "+username);
        }
-   });
-
-
-app.post('/login',function(req,res){
-   //we'll need username and password
-  res.send("done");
+   })
 });
 
 var counter=0;
