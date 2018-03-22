@@ -86,7 +86,16 @@ app.post('/create-user',function(req,res){
 });
 
 app.post('/login',function(req,res){
-    res.send("at login page");
+   var username = req.body.username;
+   var password = req.body.password;
+   pool.query('SELECT * "user" WHERE username=$1', [username],function(err,result){
+       if(err){
+           res.status(500).send(err.toString());
+       }
+       else{
+           res.send("got some result");
+       }
+   });
 });
 
 var counter=0;
