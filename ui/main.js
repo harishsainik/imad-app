@@ -1,32 +1,4 @@
-var button = document.getElementById('counter');
-
-var counter=0;
-button.onclick= function(){
-    //Create the request object
-    var req = new XMLHttpRequest();
-    
-    //define action to be taken on state change of request
-    req.onreadystatechange = function(){
-      if(req.readyState === XMLHttpRequest.DONE)
-      {
-          //if request if done successfully take action
-          if(req.status === 200)
-          {
-              var counter=req.responseText;
-              var span= document.getElementById('count');
-              span.innerHTML = counter.toString();
-          }
-      }
-      //Request not done yet
-    };
-    
-    
-    //Make the request
-    req.open('GET','http://harishsainilajak.imad.hasura-app.io/counter',true);
-    req.send(null);
-};
-
-
+//Submit username and password
 var submit = document.getElementById('submit-btn');
 
 submit.onclick = function(){
@@ -40,25 +12,29 @@ submit.onclick = function(){
           //if request if done successfully take action
           if(req.status === 200)
           {
-            //fetch list and render it
-            var names=req.responseText;
-            names=JSON.parse(names);
-            var list='';
-            for(var i=0;i<names.length;i++){
-                list+='<li>' + names[i] +'</li>';
-            }
-            var ui=document.getElementById('namelist');
-            ui.innerHTML = list; 
+              console.log("user logged in");
+              alert("login succeessful");
           }
+          else if(req.status ===403)
+          {
+             alert("invalid username or password");
+          }
+          else if(req.status === 500){
+              alert("Internal server error");
+          }
+          
       }
       //Request not done yet
     };
     
-    //fetch name
-    var input = document.getElementById('name');
-    var name = input.value;
+    //fetch username and password
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    console.log(username);
+    console.log(password);
     //Make the request
-    req.open('GET','http://harishsainilajak.imad.hasura-app.io/submitname?name='+name,true);
-    req.send(null);
+    req.open('POST','http://harishsainilajak.imad.hasura-app.io/login',true);
+    req.setRequestHeader('Content-Type','application/json');
+    req.send(JSON.stringify({username:username,password:password}));
     
 };
