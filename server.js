@@ -83,7 +83,7 @@ app.post('/create-user',function(req,res){
        else{
            res.send("User successfully created: "+username);
        }
-   })
+   });
 
 
 app.post('/login',function(req,res){
@@ -95,8 +95,9 @@ app.post('/login',function(req,res){
            res.status(500).send(err.toString());
        }
        else{
-           if(result.rows.length === 0)
-           res.status(403).send("Invalid Username or Password");
+           if(result.rows.length === 0){
+            res.status(403).send("Invalid Username or Password");
+           }
            else{
                var dbPassword = result.rows[0].password;
                var salt = dbPassword.split('$')[1];
@@ -111,7 +112,7 @@ app.post('/login',function(req,res){
            }
            res.send("User successfully created: "+username);
        }
-   })
+   });
 });
 
 var counter=0;
