@@ -85,6 +85,10 @@ app.post('/create-user',function(req,res){
    })
 });
 
+app.post('/login',function(req,res){
+    res.send("at login page");
+});
+
 var counter=0;
 app.get('/counter',function(req,res){
    counter=counter+1;
