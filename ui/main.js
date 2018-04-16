@@ -70,11 +70,14 @@ submit.onclick = function(){
     //fetch username and password
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
-    console.log(username);
-    console.log(password);
-    //Make the request
-    req.open('POST','http://harishsainilajak.imad.hasura-app.io/create-user',true);
-    req.setRequestHeader('Content-Type','application/json');
-    req.send(JSON.stringify({username:username,password:password}));
-    
+    if(username==='' ||password===''){
+        alert('Username or passwrod fields cant be left empty');
+    }else{
+        console.log(username);
+        console.log(password);
+        //Make the request
+        req.open('POST','http://harishsainilajak.imad.hasura-app.io/create-user',true);
+        req.setRequestHeader('Content-Type','application/json');
+        req.send(JSON.stringify({username:username,password:password}));
+    }
 };
