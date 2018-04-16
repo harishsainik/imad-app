@@ -57,7 +57,7 @@ submit.onclick = function(){
           {
               console.log("user created");
               alert("Sign up successful");
-              submit.innerHtml="Registered";
+              submit.innerHTML="Registered";
           }
           else if(req.status === 500){
               alert("Internal server error");
