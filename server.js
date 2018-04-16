@@ -84,12 +84,16 @@ app.post('/create-user',function(req,res){
    var hashPassword = hash(password, salt);
    pool.query('insert into "user" (username, password) values ($1,$2)', [username,hashPassword],function(err,result){
        if(err){
+           //for android app
+           res.setHeader('Content-Type','application/json');
            res.status(500).send(err.toString());
        }
        else{
+           //For android app
+           res.setHeader('Content-Type','application/json');
            res.send("User successfully created: "+username);
        }
-   })
+   });
 });
 
 app.post('/login',function(req,res){
