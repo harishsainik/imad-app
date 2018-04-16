@@ -71,7 +71,7 @@ submit.onclick = function(){
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
     if(username==='' ||password===''){
-        alert('Username or passwrod fields cant be left empty');
+        alert('Username or password fields cant be left empty');
     }else{
         console.log(username);
         console.log(password);
