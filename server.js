@@ -85,13 +85,13 @@ app.post('/create-user',function(req,res){
    pool.query('insert into "user" (username, password) values ($1,$2)', [username,hashPassword],function(err,result){
        if(err){
            //for android app
-           res.setHeader('Content-Type','application/json');
-           res.status(500).send(err.toString());
+           res.setHeader('Content-Type', 'application/json');
+           res.status(500).send(JSON.stringify({"error":err.toString()}));
        }
        else{
            //For android app
            res.setHeader('Content-Type','application/json');
-           res.send("User successfully created: "+username);
+           res.send(JSON.parse('{"message":"User successfully created: '+username+ ' "}') );
        }
    });
 });
@@ -101,11 +101,14 @@ app.post('/login',function(req,res){
    var password = req.body.password;
    pool.query('SELECT * from "user" WHERE username=$1', [username],function(err,result){
        if(err){
+           
+           res.setHeader('Content-Type', 'application/json');
            res.status(500).send(err.toString());
        }
        else{
            if(result.rows.length === 0){
-               res.status(403).send("Invalid username or password");
+               res.setHeader('Content-Type', 'application/json');
+               res.status(403).send(JSON.stringify({"error": "username/password is invalid"}));
            }
            else
            {
@@ -117,12 +120,14 @@ app.post('/login',function(req,res){
                    //set the session
                    req.session.auth ={ userId : result.rows[0].id};
                    //For android app
-                   res.setHeader('Content-Type','application/json');
-                   res.send("Logged in");
+                   res.setHeader('Content-Type', 'application/json');
+                   res.send(JSON.stringify({"message":"You have successfully logged in"}));
                }
                else
                {
-                   res.status(403).send("Invalid username of password");
+                   //For app
+                   res.setHeder('Content-Type', 'application/json');
+                   res.status(403).send(JSON.stringify({"error": "username/password is invalid server"}));
                }
            }
        }
