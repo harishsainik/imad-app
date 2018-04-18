@@ -118,7 +118,7 @@ app.post('/login',function(req,res){
                    req.session.auth ={ userId : result.rows[0].id};
                    //For android app
                    res.setHeader('Content-Type','application/json');
-                   return res.send("Logged in");
+                   res.send("Logged in");
                }
                else
                {
